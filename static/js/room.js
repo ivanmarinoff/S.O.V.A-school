@@ -44,7 +44,10 @@ chatMessageSend.onclick = function () {
 let chatSocket = null;
 
 function connect() {
-    chatSocket = new WebSocket("ws://" + window.location.host + "/ws/" + roomName + "/");
+    const dockerHost = 'host.docker.internal';
+    chatSocket = new WebSocket("ws://" + dockerHost + "/ws/" + roomName + "/");
+
+    // chatSocket = new WebSocket("ws://" + window.location.host + "/ws/" + roomName + "/");
 
     // chatSocket = new WebSocket("ws://localhost:8000/" + "/ws/chat/" + roomName + "/" );
 
