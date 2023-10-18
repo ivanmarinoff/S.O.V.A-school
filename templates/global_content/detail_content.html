@@ -7,7 +7,7 @@
                 <br><br><br><br>
                 <div class="text-center" data-wow-delay="0.2s">
                     <div class="about-thumb">
-                        <form action="{% url 'global-detail-content' %}" enctype="multipart/form-data"
+                        <form action="{% url 'global-detail-content' slug=object.slug %}" enctype="multipart/form-data"
                               method="get"></form>
                         <tbody>
                         <tr>

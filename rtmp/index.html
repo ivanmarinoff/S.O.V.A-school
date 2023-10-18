@@ -1,9 +1,6 @@
 {% extends 'global_content/stream_navbar.html' %}
 {% load static %}
 {% block stream_navbar_content %}
-
-    {#    <div class="container">#}
-    {#        <div class="row">#}
     <div class="wow fadeInUp">
         <div class="row">
             <div class="col-12 col-md-9">
@@ -70,7 +67,6 @@
         </div>
         {% if not room.name %}
         <div class="chat-view">
-{#            <a id="joinGeneralRoom" href="{% url 'room' room_name='general' %}" data-room="general">Join the General Room</a>#}
             <form action="{% url 'room' room_name='general' %}" id="joinGeneralRoom" data-room="general">
                 <button class="button" value="Join">Join the General Room</button>
             </form>
