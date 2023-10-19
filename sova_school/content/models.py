@@ -6,6 +6,9 @@ UserModel = get_user_model()
 
 
 class Level_1(models.Model):
+    class Meta:
+        ordering = ['-created_at']
+
     title = models.CharField(
         max_length=100,
         blank=True,
