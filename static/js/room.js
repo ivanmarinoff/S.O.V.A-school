@@ -46,7 +46,7 @@ let chatSocket = null;
 function connect() {
     // const dockerHost = 'host.docker.internal';
     // chatSocket = new WebSocket("ws://" + dockerHost + "/ws/" + roomName + "/");
-
+    // chatSocket = new WebSocket("ws://web:8000/ws/" + roomName + "/");
    chatSocket = new WebSocket("ws://" + window.location.host + "/ws/" + roomName + "/");
 
     // chatSocket = new WebSocket("ws://localhost:8000/" + "/ws/" + roomName + "/" );

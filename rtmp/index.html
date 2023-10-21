@@ -53,8 +53,8 @@
 {#                    will be created for you.</small>#}
 {#                <button type="button" id="roomConnect" class="button">Connect</button>#}
                 <label for="onlineUsers">Online users</label>
-                <select multiple class="chat-form-control" id="onlineUsersSelector"></select>
-{#                                {{ request.user.username|json_script:"roomName" }}#}
+                <select multiple class="chat-form-control" id="onlineUsersSelector" {{ users.all|json_script:"onlineUsersSelector" }}></select>
+
             {% endif %}
             {#            {% if request.user.is_authenticated %}#}
 {#            <label for="roomSelect">Active rooms</label>#}

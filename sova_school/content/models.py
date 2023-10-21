@@ -23,7 +23,7 @@ class Level_1(models.Model):
 
     user = models.ForeignKey(
         UserModel,
-        on_delete=models.DO_NOTHING,
+        on_delete=models.CASCADE,
     )
 
     slug = models.SlugField(

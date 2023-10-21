@@ -22,12 +22,14 @@
                                 </p1>
 
                             </td>
-                            <td>
-                                <p>
+                            {% if object.image_url %}
+                                <td>
+                                    <p>
                                     <div class="fa-image">
-                                    <img src="{{ object.image_url }}" style="width:51%" alt="Image_url"></div>
-                                </p>
-                            </td>
+                                        <img src="{{ object.image_url }}" style="width:51%" alt="Image_url"></div>
+                                    </p>
+                                </td>
+                            {% endif %}
                             <td>
                                 {% if object.file %}
                                     <td>

@@ -6,7 +6,7 @@ UserModel = get_user_model()
 
 
 class Room(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(verbose_name="general", max_length=100)
     online = models.ManyToManyField(to=UserModel, blank=True)
 
     def get_online_count(self):

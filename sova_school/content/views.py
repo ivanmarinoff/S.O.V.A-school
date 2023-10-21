@@ -109,8 +109,26 @@ class DeleteContentView(CustomLoginRequiredMixin, views.DeleteView):
     success_url = reverse_lazy('read-content')
     form_class = ContentDeleteForm
 
-    def get_form_kwargs(self):
+    # def get_form_kwargs(self):
+    #     instance = self.get_object()
+    #     form = super().get_form_kwargs()
+    #     form.update(instance=instance)
+    #     return form
+
+    def delete(self, request, *args, **kwargs):
         instance = self.get_object()
-        form = super().get_form_kwargs()
-        form.update(instance=instance)
-        return form
+        video = instance.Level_1.video
+        file = instance.Level_1.file
+
+        # Call the delete() method on the parent class to delete the object from the database
+        response = super().delete(request, *args, **kwargs)
+
+        # Delete the video file from the local folder
+        if default_storage.exists(video):
+            default_storage.delete(video)
+
+            # Delete the file from the local folder using default_storage
+        if default_storage.exists(file):
+            default_storage.delete(file)
+
+        return response
