@@ -152,3 +152,10 @@ LOGIN_URL = reverse_lazy("login_user")
 AUTH_USER_MODEL = "users.User"
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+SECURE_HSTS_SECONDS = 31536000  # Set the desired HSTS duration (e.g., 1 year)
+SECURE_HSTS_PRELOAD = True  # Optional: Enable HSTS preload
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Optional: Include subdomains
+# SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True

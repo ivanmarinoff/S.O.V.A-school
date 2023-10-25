@@ -18,7 +18,7 @@ def index_view(request):
 
 @login_required(login_url=LOGIN_URL)
 def room_view(request, room_name):
-    chat_room, created = Room.objects.get_or_create(name=room_name)
+    chat_room = Room.objects.get(name=room_name)
     return render(request, '../rtmp/index.html', {
         'room': chat_room,
     })

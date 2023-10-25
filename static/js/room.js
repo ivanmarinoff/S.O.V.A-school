@@ -47,10 +47,12 @@ function connect() {
     // const dockerHost = 'host.docker.internal';
     // chatSocket = new WebSocket("ws://" + dockerHost + "/ws/" + roomName + "/");
     // chatSocket = new WebSocket("ws://web:8000/ws/" + roomName + "/");
-   chatSocket = new WebSocket("ws://" + window.location.host + "/ws/" + roomName + "/");
+    chatSocket = new WebSocket("ws://" + window.location.host + "/ws/" + roomName + "/");
+    // chatSocket = new WebSocket("ws://localhost:8000/" + "/ws/" + roomName + "/");
 
-    // chatSocket = new WebSocket("ws://localhost:8000/" + "/ws/" + roomName + "/" );
-
+    // const base_url = `${window.location.host}${window.location.pathname}`;
+    // console.log(base_url)
+    // const chatSocket = new WebSocket(`ws://${base_url}`);
     chatSocket.onopen = function (e) {
         console.log("Successfully connected to the WebSocket.");
     }
@@ -106,6 +108,7 @@ function connect() {
         chatSocket.close();
     }
 }
+
 connect();
 // onlineUsersSelector.onchange = function () {
 //     chatMessageInput.value = "/pm " + onlineUsersSelector.value + " ";

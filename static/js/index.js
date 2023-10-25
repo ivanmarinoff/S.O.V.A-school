@@ -10,24 +10,24 @@ document.querySelector("#roomInput").onkeyup = function(e) {
     }
 };
 
-// // redirect to '/room/<roomInput>/'
-// document.querySelector("#roomConnect").onclick = function() {
-//     let roomName = document.querySelector("#roomInput").value;
-//     window.location.pathname = window.location.host + roomName + "/";
-// }
+// redirect to '/room/<roomInput>/'
+document.querySelector("#roomConnect").onclick = function() {
+    let roomName = document.querySelector("#roomInput").value;
+    window.location.pathname = window.location.host + roomName + "/";
+}
 
 // redirect to '/room/<roomSelect>/'
-// document.querySelector("#roomSelect").onchange = function() {
-//     let roomName = document.querySelector("#roomSelect").value.split(" (")[0];
-//     window.location.pathname = window.location.host + roomName + "/";
-// }
+document.querySelector("#roomSelect").onchange = function() {
+    let roomName = document.querySelector("#roomSelect").value.split(" (")[0];
+    window.location.pathname = window.location.host + roomName + "/";
+}
 
-// document.querySelector("#roomSelect").addEventListener("change", function () {
-//     const selectedRoom = this.value;
-//     if (selectedRoom) {
-//         window.location.pathname = window.location.host + selectedRoom + "/";
-//     }
-// });
+document.querySelector("#roomSelect").addEventListener("change", function () {
+    const selectedRoom = this.value;
+    if (selectedRoom) {
+        window.location.pathname = window.location.host + selectedRoom + "/";
+    }
+});
 
 // Assuming you have an event listener for the "Live Stream" button
 document.querySelector('#roomConnect').addEventListener('click', function () {
