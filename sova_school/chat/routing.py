@@ -8,4 +8,5 @@ websocket_urlpatterns = [
 
     # websocket_urlpatterns = [
     re_path(r'ws/(?P<room_name>\w+)/$', consumers.ChatConsumer.as_asgi()),
+    path('ws/general/', consumers.ChatConsumer.as_asgi()),
 ]

@@ -1,0 +1,42 @@
+{#{% extends 'global_content/stream_navbar.html' %}#}
+{% load static %}
+{% block stream_navbar_content %}
+    <div class="wow fadeInUp">
+        <div class="row">
+            <div class="col-12 col-md-9">
+                <br><br><br><br>
+
+                <div class="chat-room-container">
+                    <div class="room-view">
+                        {% if request.user.is_superuser %}
+                            <label for="onlineUsers">Online users</label>
+                            <select multiple class="chat-form-control"
+                                    id="onlineUsersSelector" {{ users.all|json_script:"onlineUsersSelector" }}></select>
+
+                        {% endif %}
+
+                    </div>
+                    {% if not room.name %}
+                        <div class="chat-view">
+                        <form action="{% url 'room' room_name='general' %}" id="joinGeneralRoom" data-room="general">
+                            <button class="button" value="Join">Join the General Room</button>
+                        </form>
+                    {% else %}
+                        <label for="chatLog">Room: #{{ room.name }}</label>
+                        <textarea class="chat-form-control" id="chatLog" readonly rows="4" cols="50"></textarea>
+                        <br>
+                        <input type="text" class="chat-form-control" id="chatMessageInput" autofocus="autofocus"
+                               placeholder="Enter your chat message">
+
+                        <button class="button" id="chatMessageSend" type="button">Send</button>
+                    {% endif %}
+
+
+
+                    </div>
+                    {{ room.name|json_script:"roomName" }}
+                </div>
+            </div>
+            <script src="{% static 'js/index.js' %}"></script>
+            <script src="{% static 'js/room.js' %}"></script>
+{% endblock stream_navbar_content %}

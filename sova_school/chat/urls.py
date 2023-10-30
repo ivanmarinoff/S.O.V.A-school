@@ -7,4 +7,5 @@ urlpatterns = [
     path("<str:room_name>/", views.room_view, name='room'),
     path('rooms/', views.RoomListAPIView.as_view(), name='room-list'),
     path('messages/', views.MessageListAPIView.as_view(), name='message-list'),
+    path("general/", views.superuser_view, name='super-room'),
 ]
