@@ -15,16 +15,14 @@ from channels.security.websocket import AllowedHostsOriginValidator
 
 from django.core.asgi import get_asgi_application
 
-from sova_school import chat
-from sova_school.chat import routing
-from sova_school.chat.routing import websocket_urlpatterns
+
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "sova_school.settings")
 
-application = ProtocolTypeRouter({
-    'http': get_asgi_application(),
-    "websocket": AllowedHostsOriginValidator(
-            AuthMiddlewareStack(URLRouter(websocket_urlpatterns))
-
-    ),
-})
+# application = ProtocolTypeRouter({
+#     'http': get_asgi_application(),
+#     "websocket": AllowedHostsOriginValidator(
+#             AuthMiddlewareStack(URLRouter(websocket_urlpatterns))
+#
+#     ),
+# })

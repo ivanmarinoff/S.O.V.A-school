@@ -17,7 +17,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "channels",
+    # "channels",
     "rest_framework",
     "rest_framework.authtoken",
 
@@ -37,7 +37,7 @@ CHANNEL_LAYERS = {
     },
 }
 WSGI_APPLICATION = "sova_school.wsgi.application"
-ASGI_APPLICATION = "sova_school.asgi.application"
+# ASGI_APPLICATION = "sova_school.asgi.application"
 
 CACHES = {
     'default': {

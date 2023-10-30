@@ -32,9 +32,6 @@
                     </form>
 
                     {% if request.user.is_superuser %}
-                        <form action="{% url 'super-room' %}" method="get" enctype="multipart/form-data">
-                            <input type="submit" class="form-control" value="Live chat">
-                        </form>
                         <form action="{% url 'create-content' %}" method="get"
                               enctype="multipart/form-data">
                             <input type="submit" class="form-control" value="Create content"></form><br>
