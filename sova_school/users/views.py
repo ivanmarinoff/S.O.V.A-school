@@ -49,7 +49,7 @@ class LoginApiUserView(ObtainAuthToken):
         serializer = self.serializer_class(data=request.data, context={'request': request})
         if serializer.is_valid():
             user = serializer.validated_data['user']
-            token, created = Token.objects.get_or_create(user=user)
+            token, _ = Token.objects.get_or_create(user=user)
             return Response({'token': token.key, 'user_id': user.id})
         return Response({'detail': 'Invalid credentials'}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -64,12 +64,10 @@ class ProfileApiDetailsView(generics.RetrieveUpdateDestroyAPIView):
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
 
-    #
     def get(self, request, *args, **kwargs):
         user = self.request.user
         serializer = UserSerializer(user)
         return Response(serializer.data)
-
 
 
 class OnlyAnonymousMixin:
