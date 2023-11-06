@@ -6,8 +6,8 @@ from django.template.context_processors import media
 from django.urls import reverse_lazy
 from dotenv import load_dotenv
 
-with open("$.env", 'a+') as newenv:
-    newenv.write("\n$varname=$varvalue")
+# with open("$.env", 'a+') as newenv:
+#     newenv.write("\n$varname=$varvalue")
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -134,7 +134,8 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = "static/"
+STATIC_URL = "api/static/"
+
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]

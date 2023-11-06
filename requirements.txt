@@ -2,7 +2,7 @@ pip==23.3.1
 asgiref==3.7.2
 crispy-bootstrap4==2023.1
 dj-database-url==2.1.0
-Django
+Django ==4.2.7
 django-crispy-forms==2.1
 gunicorn==21.2.0
 packaging==23.2
@@ -15,5 +15,4 @@ tzdata==2023.3
 djangorestframework~=3.14.0
 opencv-python==4.8.1.78
 numpy==1.26.1
-channels==3.0.4 # Du not change!!!
-channels-redis==3.3.1 # Du not change!!!
+
