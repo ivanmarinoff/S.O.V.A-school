@@ -84,7 +84,7 @@ class ProfileApiDetailsView(generics.RetrieveUpdateDestroyAPIView):
 class OnlyAnonymousMixin(AccessMixin):
     def dispatch(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:
-            return redirect('home_page')  # Replace 'home' with the appropriate URL or view name
+            return redirect('home_page')
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -165,13 +165,6 @@ class LogoutUserView(auth_mixins.LoginRequiredMixin, auth_views.LogoutView):
 
         # Redirect to the next page after logout
         return HttpResponseRedirect(self.get_next_page())
-
-    # def form_valid(self, form):
-    #     result = super().get_context_data()
-    #     save_changes = self.request.GET.get('save_changes')
-    #     if save_changes:
-    #         save_changes.save()
-    #     return result
 
 
 class ProfileDetailsView(ErrorRedirectMixin, auth_mixins.LoginRequiredMixin, views.DetailView):
