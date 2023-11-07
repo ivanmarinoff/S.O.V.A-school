@@ -1,6 +1,8 @@
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.mixins import AccessMixin
 from django.http import HttpResponseRedirect
 from django.core.cache import cache
+from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 from django.views import generic as views
 from django.contrib.auth import mixins as auth_mixins, get_user_model, login
@@ -70,14 +72,20 @@ class ProfileApiDetailsView(generics.RetrieveUpdateDestroyAPIView):
         return Response(serializer.data)
 
 
-class OnlyAnonymousMixin:
-    def dispatch(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return HttpResponseRedirect(self.getsuccess_url)
-        return super().dispatch(self.request, *args, **kwargs)
+# class OnlyAnonymousMixin:
+#     def dispatch(self, request, *args, **kwargs):
+#         if request.user.is_authenticated:
+#             return HttpResponseRedirect(self.getsuccess_url)
+#         return super().dispatch(self.request, *args, **kwargs)
+#
+#     def get_success_url(self):
+#         return self.success_url or reverse('login_user')
 
-    def get_success_url(self):
-        return self.success_url or reverse('login_user')
+class OnlyAnonymousMixin(AccessMixin):
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('home_page')  # Replace 'home' with the appropriate URL or view name
+        return super().dispatch(request, *args, **kwargs)
 
 
 class RegisterUserView(OnlyAnonymousMixin, views.CreateView):
@@ -109,7 +117,7 @@ class RegisterUserView(OnlyAnonymousMixin, views.CreateView):
         return reverse_lazy('profile-details', kwargs={'pk': self.object.pk})
 
 
-class LoginUserView(auth_views.LoginView):
+class LoginUserView(OnlyAnonymousMixin, auth_views.LoginView):
     form_class = LoginUserForm
     template_name = 'home/login.html'
     success_url = reverse_lazy('profile-details')
