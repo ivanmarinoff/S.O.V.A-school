@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 
+from django.utils.log import RequireDebugTrue, RequireDebugFalse
 from django.conf import DEFAULT_STORAGE_ALIAS
 from django.template.context_processors import media
 from django.urls import reverse_lazy
@@ -162,3 +163,75 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Optional: Include subdomains
 # SECURE_SSL_REDIRECT = True
 # SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{asctime} {levelname} {filename} {funcName} {lineno} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{asctime} {levelname} - {message}',
+            'style': '{',
+        },
+    },
+    'filters': {
+        'require_debug_false': {
+            '()': RequireDebugFalse,
+        },
+        'require_debug_true': {
+            '()': RequireDebugTrue,
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'filters': ['require_debug_true'],
+            'formatter': 'simple',
+        },
+        'log_file': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(BASE_DIR, 'api.log'),
+            'maxBytes': 1024 * 1024 * 5,
+            'backupCount': 5,
+            'formatter': 'verbose',
+        },
+        'error_file': {
+            'level': 'ERROR',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(BASE_DIR, 'api_error.log'),
+            'maxBytes': 1024 * 1024 * 5,
+            'backupCount': 5,
+            'formatter': 'verbose',
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'filters': ['require_debug_false'],
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'sova_school': {
+            'handlers': ['console', 'log_file', 'error_file', 'mail_admins'],
+            'level': 'DEBUG',
+        },
+        'django.request': {
+            'handlers': ['mail_admins', 'error_file'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+    },
+    'mail_admins': {
+        'level': 'ERROR',
+        'class': 'django.utils.log.AdminEmailHandler',
+        'filters': ['require_debug_false'],
+        'formatter': 'verbose',
+    },
+
+}
+ADMINS = [('Ivan Marinoff', 'ivanmarinoff.studio6@gmail.com')]
